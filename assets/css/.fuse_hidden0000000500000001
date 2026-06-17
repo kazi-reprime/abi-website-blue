@@ -1,0 +1,252 @@
+
+/* ===== ADDITIONS (menu, form states) — do not alter base design ===== */
+.navmenu{position:fixed;top:0;right:0;bottom:0;width:min(82%,330px);background:#0D2B4E;z-index:10000;transform:translateX(110%);transition:transform .3s ease;overflow-y:auto;padding:18px;box-shadow:-8px 0 30px rgba(0,0,0,.4)}
+body.menu-open .navmenu{transform:none}
+.navmenu-bd{position:fixed;inset:0;background:rgba(7,25,46,.55);z-index:9998;opacity:0;visibility:hidden;transition:.3s}
+body.menu-open .navmenu-bd{opacity:1;visibility:visible}
+.navmenu-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.navmenu-top span{color:#fff;font-weight:900;font-size:15px}
+.navmenu-x{background:none;border:none;color:#fff;font-size:26px;line-height:1;cursor:pointer}
+.navmenu a{display:block;color:#B5D4F4;padding:11px 6px;border-bottom:1px solid rgba(255,255,255,.1);font-weight:700;font-size:14px;text-decoration:none}
+.navmenu a:hover{color:#fff}
+.form-done{display:none;text-align:center;padding:22px 6px}
+.form-done .tk{width:56px;height:56px;border-radius:50%;background:#639922;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 12px}
+.form-done h4{color:#fff;font-size:16px;margin-bottom:6px}
+.form-done p{color:#B5D4F4;font-size:12px;line-height:1.6}
+.fi.err,.fs.err,.ft.err{border-color:#E24B4A!important}
+
+/* ===== Interior-page helpers (same palette/typography as reference) ===== */
+.page-hero{background:#0D2B4E;padding:22px 14px 20px}
+.page-hero .crumb{font-size:11px;color:#B5D4F4;margin-bottom:8px}
+.page-hero .crumb a{color:#B5D4F4;text-decoration:none}
+.page-hero .crumb a:hover{color:#fff}
+.page-hero h1{font-size:24px;font-weight:900;color:#fff;line-height:1.15;margin-bottom:8px;letter-spacing:-.3px}
+.page-hero p{font-size:13px;color:#B5D4F4;line-height:1.6}
+.page-hero .pbtns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.sd .stit,.stit-w{color:#fff}
+.sd .sdesc{color:#B5D4F4}
+.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.kbox{background:#F0F6FF;border:1.5px solid #D6E4F7;border-radius:8px;padding:12px 6px;text-align:center}
+.kbox .kn{font-size:18px;font-weight:900;color:#1252A3;line-height:1}
+.kbox .kl{font-size:9px;color:#5F5E5A;margin-top:4px;font-weight:600}
+.info{background:#fff;border:1.5px solid #D6E4F7;border-radius:12px;padding:14px;margin-bottom:10px}
+.info h3{font-size:14px;font-weight:900;color:#0D2B4E;margin-bottom:8px}
+.info p{font-size:12px;color:#5F5E5A;line-height:1.7}
+.mod{background:#fff;border:1.5px solid #D6E4F7;border-radius:12px;padding:14px;margin-bottom:10px}
+.mod-n{font-size:11px;font-weight:800;color:#1252A3;letter-spacing:.06em;margin-bottom:4px}
+.mod h3{font-size:14px;font-weight:900;color:#0D2B4E;margin-bottom:8px}
+.mod .skill{font-size:12px}
+.lkcard{display:block;background:#fff;border:1.5px solid #D6E4F7;border-radius:12px;padding:14px;margin-bottom:10px;text-decoration:none}
+.lkcard:hover{border-color:#1252A3}
+.lkcard .lkt{font-size:14px;font-weight:900;color:#0D2B4E;margin-bottom:3px}
+.lkcard .lkd{font-size:12px;color:#5F5E5A;line-height:1.5}
+@media(min-width:760px){
+  /* tasteful desktop: keep the exact mobile card centered, just add a backdrop */
+  body{box-shadow:0 0 60px rgba(13,43,78,.18)}
+}
+
+/* ============================================================
+   MENU GROUPS + THEME TOGGLE  (added)
+   ============================================================ */
+.navmenu .ng{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7FA8D8;margin:14px 6px 2px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
+.navmenu .nm-home{font-weight:900;color:#fff}
+.theme-btn{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.10);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.theme-btn:hover{background:rgba(255,255,255,.20)}
+
+/* ============================================================
+   THREE THEMES  (classic = default reference look)
+   Layered on top so the homepage stays byte-faithful in Classic.
+   ============================================================ */
+
+/* ---------- MIDNIGHT (dark) ---------- */
+html[data-theme="midnight"] body{background:#081d38}
+html[data-theme="midnight"] .sw{background:#0d2b4e}
+html[data-theme="midnight"] .sb{background:#081d38}
+html[data-theme="midnight"] .earn{background:#103157}
+html[data-theme="midnight"] .step,
+html[data-theme="midnight"] .plan,
+html[data-theme="midnight"] .earn,
+html[data-theme="midnight"] .faq,
+html[data-theme="midnight"] .icard,
+html[data-theme="midnight"] .rcard,
+html[data-theme="midnight"] .get-item,
+html[data-theme="midnight"] .kbox,
+html[data-theme="midnight"] .info,
+html[data-theme="midnight"] .mod,
+html[data-theme="midnight"] .lkcard{background:#123a64;border-color:rgba(255,255,255,.16)}
+html[data-theme="midnight"] .rcard.new{background:#1c4a2e;border-color:#5a8c3a}
+html[data-theme="midnight"] .stit,
+html[data-theme="midnight"] .step-t,
+html[data-theme="midnight"] .plan-s,
+html[data-theme="midnight"] .plan-p,
+html[data-theme="midnight"] .iname,
+html[data-theme="midnight"] .rname,
+html[data-theme="midnight"] .faq-qt,
+html[data-theme="midnight"] .mod h3,
+html[data-theme="midnight"] .info h3,
+html[data-theme="midnight"] .lkcard .lkt,
+html[data-theme="midnight"] .get-title,
+html[data-theme="midnight"] .kbox .kn{color:#ffffff}
+html[data-theme="midnight"] .sdesc,
+html[data-theme="midnight"] .skill,
+html[data-theme="midnight"] .step-b,
+html[data-theme="midnight"] .plan-d,
+html[data-theme="midnight"] .plan-h,
+html[data-theme="midnight"] .plan-n,
+html[data-theme="midnight"] .earn-b,
+html[data-theme="midnight"] .ibio,
+html[data-theme="midnight"] .rtxt,
+html[data-theme="midnight"] .rrole,
+html[data-theme="midnight"] .faq-a,
+html[data-theme="midnight"] .lkcard .lkd,
+html[data-theme="midnight"] .req-list li,
+html[data-theme="midnight"] .vcap,
+html[data-theme="midnight"] .kbox .kl,
+html[data-theme="midnight"] .info p,
+html[data-theme="midnight"] .gbar{color:#cfe0f5}
+html[data-theme="midnight"] .skill,
+html[data-theme="midnight"] .req-list li,
+html[data-theme="midnight"] .faq-a{border-color:rgba(255,255,255,.10)}
+html[data-theme="midnight"] .slbl,
+html[data-theme="midnight"] .ski,
+html[data-theme="midnight"] .req-icon,
+html[data-theme="midnight"] .faq-num,
+html[data-theme="midnight"] .faq-chev,
+html[data-theme="midnight"] .glink,
+html[data-theme="midnight"] .glink2,
+html[data-theme="midnight"] .irole,
+html[data-theme="midnight"] .mod-n,
+html[data-theme="midnight"] .earn-a,
+html[data-theme="midnight"] .plan-p{color:#6ea8ec}
+html[data-theme="midnight"] .step-n{color:#284a73}
+
+/* ---------- HERITAGE (warm barbershop) ---------- */
+html[data-theme="heritage"] body{background:#f5efe2}
+html[data-theme="heritage"] .sw{background:#fffdf8}
+html[data-theme="heritage"] .sb{background:#efe6d6}
+html[data-theme="heritage"] .earn{background:#fbf6ea}
+html[data-theme="heritage"] .step,
+html[data-theme="heritage"] .plan,
+html[data-theme="heritage"] .earn,
+html[data-theme="heritage"] .faq,
+html[data-theme="heritage"] .icard,
+html[data-theme="heritage"] .rcard,
+html[data-theme="heritage"] .get-item,
+html[data-theme="heritage"] .kbox,
+html[data-theme="heritage"] .info,
+html[data-theme="heritage"] .mod,
+html[data-theme="heritage"] .lkcard{background:#fffdf8;border-color:#e2d5bc}
+html[data-theme="heritage"] .stit,
+html[data-theme="heritage"] .step-t,
+html[data-theme="heritage"] .plan-s,
+html[data-theme="heritage"] .iname,
+html[data-theme="heritage"] .rname,
+html[data-theme="heritage"] .faq-qt,
+html[data-theme="heritage"] .mod h3,
+html[data-theme="heritage"] .info h3,
+html[data-theme="heritage"] .lkcard .lkt,
+html[data-theme="heritage"] .get-title{color:#241a10}
+html[data-theme="heritage"] .sdesc,
+html[data-theme="heritage"] .skill,
+html[data-theme="heritage"] .step-b,
+html[data-theme="heritage"] .plan-d,
+html[data-theme="heritage"] .plan-h,
+html[data-theme="heritage"] .plan-n,
+html[data-theme="heritage"] .earn-b,
+html[data-theme="heritage"] .ibio,
+html[data-theme="heritage"] .rtxt,
+html[data-theme="heritage"] .faq-a,
+html[data-theme="heritage"] .lkcard .lkd,
+html[data-theme="heritage"] .req-list li,
+html[data-theme="heritage"] .info p{color:#5a4d3a}
+html[data-theme="heritage"] .slbl,
+html[data-theme="heritage"] .ski,
+html[data-theme="heritage"] .req-icon,
+html[data-theme="heritage"] .faq-num,
+html[data-theme="heritage"] .faq-chev,
+html[data-theme="heritage"] .glink,
+html[data-theme="heritage"] .glink2,
+html[data-theme="heritage"] .irole,
+html[data-theme="heritage"] .mod-n,
+html[data-theme="heritage"] .earn-a,
+html[data-theme="heritage"] .plan-p,
+html[data-theme="heritage"] .kbox .kn{color:#b21f2d}
+html[data-theme="heritage"] .cta,
+html[data-theme="heritage"] .plan-btn,
+html[data-theme="heritage"] .ann,
+html[data-theme="heritage"] .ticker,
+html[data-theme="heritage"] .haircut-bar{background:#b21f2d}
+html[data-theme="heritage"] .cta-out{border-color:#b21f2d;color:#b21f2d}
+html[data-theme="heritage"] .plan.ft,
+html[data-theme="heritage"] .earn.ft{border-color:#b21f2d}
+html[data-theme="heritage"] .plan-badge{background:#b21f2d}
+html[data-theme="heritage"] .hero,
+html[data-theme="heritage"] .form-sec,
+html[data-theme="heritage"] .sd,
+html[data-theme="heritage"] .cd,
+html[data-theme="heritage"] .fcta,
+html[data-theme="heritage"] .hdr,
+html[data-theme="heritage"] .page-hero,
+html[data-theme="heritage"] footer{background:#211810}
+html[data-theme="heritage"] .phones,
+html[data-theme="heritage"] .form-box{background:#2c2016}
+html[data-theme="heritage"] .cd-box{background:#3a2a1c}
+html[data-theme="heritage"] .step-n{color:#e2d5bc}
+html[data-theme="heritage"] .chip{background:#3a2a1c}
+
+/* ============================================================
+   RESPONSIVE — mobile (base) · tablet · desktop
+   Keeps the exact reference look; reflows card groups to fill
+   wider screens. Text/heading spans full row; cards flow to columns.
+   ============================================================ */
+/* Full-bleed: bars & sections span the FULL viewport width; content is
+   centered inside a readable band via auto side-gutters. No side cutouts. */
+.fullbleed,
+.ann,.hdr,.phones,.hero,.form-sec,.cd,.fcta,footer,.ticker,.haircut-bar,.sec{--band:430px}
+@media(min-width:680px){
+  body{max-width:none;width:100%;padding-bottom:72px}
+  .ann,.hdr,.phones,.hero,.form-sec,.cd,.fcta,footer,.ticker,.haircut-bar,.sec{--band:720px;
+    padding-left:max(24px,calc((100% - var(--band))/2));
+    padding-right:max(24px,calc((100% - var(--band))/2));}
+  .sec{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start;padding-top:36px;padding-bottom:36px}
+  .sec > *{grid-column:1/-1}
+  .sec > .step,.sec > .plan,.sec > .earn,.sec > .info,.sec > .mod,.sec > .lkcard,.sec > .rcard,.sec > .faq{grid-column:auto;margin-bottom:0}
+  .sticky{max-width:none;left:0;transform:none}
+}
+@media(min-width:1000px){
+  body{padding-bottom:0}
+  .ann,.hdr,.phones,.hero,.form-sec,.cd,.fcta,footer,.ticker,.haircut-bar,.sec{--band:1200px;
+    padding-left:max(40px,calc((100% - var(--band))/2));
+    padding-right:max(40px,calc((100% - var(--band))/2));}
+  .sec{grid-template-columns:repeat(3,1fr);padding-top:60px;padding-bottom:60px}
+  .sec > .faq{grid-column:span 1}
+  .igrid{grid-template-columns:repeat(3,1fr)}
+  .get-grid{grid-template-columns:repeat(3,1fr)}
+  .ggrid{grid-template-columns:repeat(4,1fr)}
+  .gimg{height:170px}
+  .stit{font-size:27px !important}
+  .hero-h{font-size:34px}
+  .page-hero h1{font-size:38px}
+  .page-hero{padding-top:64px;padding-bottom:56px}
+  .form-sec .form-box{max-width:660px;margin:0 auto}
+  .hero{padding-top:34px}
+  .sticky{display:none}
+  .ticker{font-size:13px}
+}
+@media(min-width:1500px){
+  .ann,.hdr,.phones,.hero,.form-sec,.cd,.fcta,footer,.ticker,.haircut-bar,.sec{--band:1320px}
+}
+
+/* ============================================================
+   BACKGROUND IMAGES (downloaded assets) on dark hero sections,
+   with a strong overlay so all text stays readable in every theme.
+   ============================================================ */
+.hero{background:linear-gradient(rgba(7,25,46,.85),rgba(9,28,55,.93)),url('../img/pics/barbershop-full-shop.jpeg');background-size:cover;background-position:center}
+.page-hero{background:linear-gradient(rgba(7,25,46,.80),rgba(9,28,55,.90)),url('../img/pics/banner-slide1.jpg');background-size:cover;background-position:center}
+.fcta{background:linear-gradient(rgba(7,25,46,.88),rgba(9,28,55,.94)),url('../img/pics/abi-students-008.jpg');background-size:cover;background-position:center}
+.form-sec{background:linear-gradient(rgba(7,25,46,.90),rgba(9,28,55,.95)),url('../img/pics/contact-bg.jpeg');background-size:cover;background-position:center}
+/* Heritage keeps warm charcoal overlay over the same photos */
+html[data-theme="heritage"] .hero{background:linear-gradient(rgba(28,20,12,.86),rgba(33,24,16,.93)),url('../img/pics/barbershop-full-shop.jpeg');background-size:cover;background-position:center}
+html[data-theme="heritage"] .page-hero{background:linear-gradient(rgba(28,20,12,.84),rgba(33,24,16,.92)),url('../img/pics/banner-slide1.jpg');background-size:cover;background-position:center}
+html[data-theme="heritage"] .fcta{background:linear-gradient(rgba(28,20,12,.90),rgba(33,24,16,.95)),url('../img/pics/abi-students-008.jpg');background-size:cover;background-position:center}
+html[data-theme="heritage"] .form-sec{background:linear-gradient(rgba(28,20,12,.92),rgba(33,24,16,.96)),url('../img/pics/contact-bg.jpeg');background-size:cover;background-position:center}
