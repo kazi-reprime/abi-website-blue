@@ -47,6 +47,13 @@ body.menu-open .navmenu-bd{opacity:1;visibility:visible}
    ============================================================ */
 .navmenu .ng{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7FA8D8;margin:14px 6px 2px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
 .navmenu .nm-home{font-weight:900;color:#fff}
+/* Spinning barber-pole logo mark (shared, identical on black + blue) */
+.bpole{display:inline-block;width:13px;height:36px;border-radius:7px;overflow:hidden;position:relative;background:#fff;border:2px solid rgba(255,255,255,.9);box-shadow:0 2px 7px rgba(0,0,0,.35);flex-shrink:0;vertical-align:middle}
+.bpole-stripes{position:absolute;inset:-2px;background:repeating-linear-gradient(45deg,#e0203a 0 7px,#fff 7px 14px,#1b3fd9 14px 21px,#fff 21px 28px);background-size:100% 28px;animation:bpoleRoll 1.1s linear infinite}
+@keyframes bpoleRoll{from{background-position:0 0}to{background-position:0 -28px}}
+@media(max-width:560px){.bpole{height:32px;width:12px}}
+@media(prefers-reduced-motion:reduce){.bpole-stripes{animation:none}}
+
 /* 5-dot color theme switcher (lives in the announcement bar, right side) */
 .ann-dots{display:flex;gap:7px;flex-shrink:0;align-items:center}
 .tdot{width:15px;height:15px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:#ccc;cursor:pointer;padding:0;-webkit-appearance:none;appearance:none;transition:transform .15s ease,box-shadow .2s ease,outline-color .15s ease}
