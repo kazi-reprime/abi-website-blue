@@ -672,3 +672,23 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 .post li{margin:.3em 0}
 .post-meta{opacity:.7;font-size:.92rem;margin-top:.4rem}
 .post-back{margin-top:1.4rem;font-weight:600}
+
+/* g3d — blue 3D gallery (institutional tilt) */
+.g3d-wrap{perspective:1400px}
+.g3d-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:14px}
+.g3d-card{border:0;padding:0;cursor:pointer;background:#0b1a33;border-radius:14px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 10px 30px rgba(7,20,46,.28);transform-style:preserve-3d;transition:transform .18s ease,box-shadow .25s ease}
+.g3d-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.g3d-card:hover{box-shadow:0 26px 60px rgba(7,20,46,.45)}
+.g3d-card:hover img{transform:scale(1.06)}
+.g3d-reels{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:14px}
+.g3d-reel{position:relative;border:0;cursor:pointer;background:linear-gradient(160deg,#0f2a52,#071a33);border-radius:14px;aspect-ratio:9/16;overflow:hidden;box-shadow:0 10px 30px rgba(7,20,46,.3);transition:transform .18s ease}
+.g3d-reel video{width:100%;height:100%;object-fit:cover;display:block}
+.g3d-reel:hover{transform:translateY(-4px) scale(1.02)}
+.g3d-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;background:radial-gradient(circle,rgba(0,0,0,.12),rgba(0,0,0,.5))}
+.g3d-lb{position:fixed;inset:0;z-index:300;background:rgba(5,12,26,.94);display:none;align-items:center;justify-content:center;padding:20px}
+.g3d-lb.on{display:flex}
+.g3d-lb img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.g3d-lb-x{position:absolute;top:14px;right:20px;font-size:32px;color:#fff;background:0;border:0;cursor:pointer;line-height:1}
+.g3d-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:44px;color:#fff;background:0;border:0;cursor:pointer;padding:8px 14px;line-height:1}
+.g3d-nav.prev{left:6px}.g3d-nav.next{right:6px}
+@media(prefers-reduced-motion:reduce){.g3d-card,.g3d-card img,.g3d-reel{transition:none}.g3d-card:hover img{transform:none}}
