@@ -20,13 +20,17 @@ PAGES  = SRC / "pages"
 
 PREFIX = (CHROME / "prefix.html").read_text(encoding="utf-8")
 SUFFIX = (CHROME / "suffix.html").read_text(encoding="utf-8")
+# Spanish chrome (Spanish header/nav + footer) used when a page declares lang=es.
+PREFIX_ES = (CHROME / "prefix-es.html").read_text(encoding="utf-8")
+SUFFIX_ES = (CHROME / "suffix-es.html").read_text(encoding="utf-8")
 
 def render(name):
     head = (PAGES / f"{name}.head.html").read_text(encoding="utf-8")
     body = (PAGES / f"{name}.body.html").read_text(encoding="utf-8")
     meta = json.loads((PAGES / f"{name}.json").read_text(encoding="utf-8"))
-    inner = body if meta.get("standalone") else f"{PREFIX}\n{body}\n{SUFFIX}"
     lang = meta.get("lang", "en")
+    prefix, suffix = (PREFIX_ES, SUFFIX_ES) if lang == "es" else (PREFIX, SUFFIX)
+    inner = body if meta.get("standalone") else f"{prefix}\n{body}\n{suffix}"
     return (
         f'<!DOCTYPE html>\n<html lang="{lang}">\n<head>\n'
         f"{head}\n</head>\n<body>\n{inner}\n</body>\n</html>\n"
