@@ -19,7 +19,6 @@ python3 src/build.py      # regenerates all root *.html from src/
 | `src/pages/<name>.body.html` | The page's body content (what changes per page). |
 | `src/pages/<name>.head.html` | The page's `<head>` inner markup (title, meta, OG, canonical). |
 | `src/pages/<name>.json` | `{ "standalone": bool, "lang": "en"\|"es" }`. |
-| `src/legacy/` | The original external generators (`gen.py`, `build*.py`, `knowledge/`), kept for reference. Superseded by this pipeline. |
 | `src/_bootstrap.py` | One-time script that derived this pipeline from the deployed HTML (provenance; not needed for normal builds). |
 
 ## How a page is assembled
