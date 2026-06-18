@@ -47,8 +47,21 @@ body.menu-open .navmenu-bd{opacity:1;visibility:visible}
    ============================================================ */
 .navmenu .ng{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7FA8D8;margin:14px 6px 2px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
 .navmenu .nm-home{font-weight:900;color:#fff}
-.theme-btn{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.10);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
-.theme-btn:hover{background:rgba(255,255,255,.20)}
+/* 5-dot color theme switcher (lives in the announcement bar, right side) */
+.ann-dots{display:flex;gap:7px;flex-shrink:0;align-items:center}
+.tdot{width:15px;height:15px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:#ccc;cursor:pointer;padding:0;-webkit-appearance:none;appearance:none;transition:transform .15s ease,box-shadow .2s ease,outline-color .15s ease}
+.tdot:hover{transform:scale(1.28)}
+.tdot:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.tdot[aria-pressed="true"]{outline:2px solid #fff;outline-offset:2px;transform:scale(1.18);box-shadow:0 0 8px 1px rgba(255,255,255,.55)}
+.tdot-classic{background:#3d8be0}
+.tdot-midnight{background:#0a1f3c}
+.tdot-heritage{background:#b21f2d}
+.tdot-royal{background:#6d3bd1}
+.tdot-carbon{background:#ff6a2c}
+@media(max-width:560px){.tdot{width:13px;height:13px}.ann-dots{gap:6px}}
+/* smooth color cross-fade while a new theme is applied */
+html.theming,html.theming body,html.theming .ann,html.theming .hdr,html.theming .sw,html.theming .sb,html.theming .step,html.theming .plan,html.theming .earn,html.theming .faq,html.theming .icard,html.theming .rcard,html.theming .get-item,html.theming .kbox,html.theming .info,html.theming .mod,html.theming .lkcard,html.theming .hero,html.theming .form-sec,html.theming .cd,html.theming .fcta,html.theming footer,html.theming .cta,html.theming .plan-btn,html.theming .ticker,html.theming .haircut-bar,html.theming .page-hero,html.theming .phones{transition:background-color .45s ease,color .45s ease,border-color .45s ease!important}
+@media(prefers-reduced-motion:reduce){html.theming *{transition:none!important}.tdot{transition:none}}
 
 /* ============================================================
    THREE THEMES  (classic = default reference look)

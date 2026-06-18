@@ -9,24 +9,29 @@
 
   function onReady(fn){ document.readyState==="loading" ? document.addEventListener("DOMContentLoaded",fn) : fn(); }
 
-  /* ---- Theme switcher (Classic / Midnight / Heritage) ---- */
+  /* ---- Theme switcher: 5 color dots in the announcement bar ----
+     Dots are static markup (.ann-dots > .tdot[data-set-theme]); this only
+     wires clicks, persistence, the active state, and the color cross-fade.
+     "classic" is the default reference look, so it carries NO data-theme
+     attribute (keeps the homepage byte-faithful in Classic). */
   function wireTheme(){
-    var THEMES=["classic","midnight","heritage","royal","carbon"];
-    var ICON={classic:"☀️",midnight:"🌙",heritage:"💈",royal:"👑",carbon:"🔥"};
-    var TITLE={classic:"Classic",midnight:"Midnight",heritage:"Heritage",royal:"Royal",carbon:"Carbon"};
     function get(){ try{ return localStorage.getItem("abi-theme")||"classic"; }catch(e){ return "classic"; } }
-    function set(t){ document.documentElement.setAttribute("data-theme",t); try{ localStorage.setItem("abi-theme",t); }catch(e){}
-      var b=document.getElementById("themeBtn"); if(b){ b.textContent=ICON[t]; b.title="Theme: "+TITLE[t]+" (tap to switch)"; } }
-    var hr=document.querySelector(".hdr-right");
-    if(hr && !document.getElementById("themeBtn")){
-      var btn=document.createElement("button");
-      btn.id="themeBtn"; btn.className="theme-btn"; btn.type="button";
-      btn.setAttribute("aria-label","Switch color theme");
-      btn.textContent=ICON[get()];
-      btn.addEventListener("click",function(){ var i=THEMES.indexOf(get()); set(THEMES[(i+1)%THEMES.length]); });
-      hr.insertBefore(btn, hr.firstChild);
+    var dots=[].slice.call(document.querySelectorAll(".tdot"));
+    function mark(t){ dots.forEach(function(d){
+      d.setAttribute("aria-pressed", d.getAttribute("data-set-theme")===t ? "true" : "false"); }); }
+    function apply(t,animate){
+      if(animate){
+        document.documentElement.classList.add("theming");
+        setTimeout(function(){ document.documentElement.classList.remove("theming"); }, 550);
+      }
+      if(t==="classic"){ document.documentElement.removeAttribute("data-theme"); }
+      else { document.documentElement.setAttribute("data-theme",t); }
+      try{ localStorage.setItem("abi-theme",t); }catch(e){}
+      mark(t);
     }
-    set(get());
+    dots.forEach(function(d){ d.addEventListener("click",function(){
+      apply(d.getAttribute("data-set-theme"), true); }); });
+    apply(get(), false);
   }
 
   /* ---- Desktop top navigation bar (shown >=1000px via CSS) ---- */
