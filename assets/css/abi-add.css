@@ -555,3 +555,91 @@ html[data-theme="heritage"] .info .ibadge{background:#f3ead7;border-color:#e2d5b
   .step-b,.info p,.lkcard .lkd,.faq-a,.req-list li,.rtxt{font-size:17.5px}
   .cta,.cta-wh,.cta-out{font-size:19px;padding:19px 34px}
 }
+
+/* ============================================================
+   v6 — HEADER CENTERED · BIGGER CHROME TEXT · UNIFORM INSTRUCTOR PHOTOS
+   ============================================================ */
+.hdr-txt{text-align:center!important}
+.hdr-logo{flex:1;justify-content:center}
+@media(min-width:1000px){ .hdr-logo{flex:1;justify-content:center} .hdr-txt{text-align:center!important} }
+/* bigger header / menu / phones / announce text */
+.ann-text{font-size:13.5px!important}
+.hdr-name{font-size:17px}
+.hdr-loc{font-size:12.5px}
+.navmenu a{font-size:16.5px;padding:14px 8px}
+.navmenu .nm-home{font-size:18px}
+.phones a{font-size:14.5px}
+@media(min-width:1000px){
+  .ann-text{font-size:15px!important}
+  .hdr-name{font-size:23px}.hdr-loc{font-size:13.5px}.hdr-pole{width:52px;height:52px;font-size:28px}
+  .navmenu a{font-size:18px;padding:15px 8px}.navmenu .nm-home{font-size:20px}
+  .phones a{font-size:16px}
+}
+/* every instructor photo identical size (fix oversized centered card) */
+.icard.icenter{grid-column:auto!important;max-width:none!important}
+.igrid{align-items:start}
+.icard .iav{aspect-ratio:1/1!important}
+
+/* ============================================================
+   v7 — CRITICAL FIX: content visibility, header center, spacing
+   The scroll-reveal was leaving headings/sections ghosted & invisible,
+   creating huge empty gaps. Force all content fully visible.
+   ============================================================ */
+.reveal{opacity:1!important;transform:none!important}
+/* Center the brand on tablet/desktop (true header center) */
+@media(min-width:700px){
+  .hdr{position:relative}
+  .hdr-logo{position:absolute;left:50%;transform:translateX(-50%);flex:none;justify-content:center}
+}
+/* Tighten excessive vertical whitespace on desktop */
+@media(min-width:1000px){ .sec{padding-top:54px!important;padding-bottom:54px!important} }
+
+/* v8.1 — keep header controls on the right when brand is absolutely centered */
+@media(min-width:700px){ .hdr{justify-content:flex-end} }
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ============================================================
+   v12 — MOBILE FIT: hero headline was overflowing the screen edges
+   ============================================================ */
+@media(max-width:679px){
+  .hero-h{font-size:clamp(18px,6.1vw,30px)!important;letter-spacing:-.3px}
+  .hero-hl-inner{gap:8px;flex-wrap:nowrap;max-width:100%}
+  .hero-hdiv{height:18px}
+  .hero{padding-left:12px;padding-right:12px}
+  .hero-date{font-size:14px}
+  body{padding-bottom:70px}            /* clear the sticky action bar */
+}
+html,body{overflow-x:hidden;max-width:100%}
+
+/* ============================================================
+   v13 — NEW: floating help bubble + exit-intent lead popup
+   (adopted from the abi-website-black reference)
+   ============================================================ */
+.abi-help{position:fixed;right:16px;bottom:78px;z-index:9000}
+@media(min-width:1040px){.abi-help{bottom:26px;right:26px}}
+.abi-help-btn{width:58px;height:58px;border-radius:50%;border:none;background:#1252A3;color:#fff;font-size:25px;box-shadow:0 10px 28px rgba(13,43,78,.4);cursor:pointer;transition:transform .2s;animation:abipulse 2.6s infinite}
+@keyframes abipulse{0%{box-shadow:0 10px 28px rgba(13,43,78,.4),0 0 0 0 rgba(18,82,163,.5)}70%{box-shadow:0 10px 28px rgba(13,43,78,.4),0 0 0 14px rgba(18,82,163,0)}100%{box-shadow:0 10px 28px rgba(13,43,78,.4),0 0 0 0 rgba(18,82,163,0)}}
+.abi-help-btn:hover{transform:scale(1.08)}
+.abi-help-panel{position:absolute;right:0;bottom:70px;width:266px;background:#fff;border:1px solid #D6E4F7;border-radius:16px;box-shadow:0 20px 54px rgba(13,43,78,.3);padding:16px;opacity:0;visibility:hidden;transform:translateY(10px);transition:.25s}
+.abi-help.open .abi-help-panel{opacity:1;visibility:visible;transform:none}
+.abi-help-hd{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:#0D2B4E;font-size:14px;margin-bottom:6px}
+.abi-help-x{background:none;border:none;font-size:20px;cursor:pointer;color:#9aa6b4;line-height:1}
+.abi-help-panel p{font-size:13px;color:#5F5E5A;margin-bottom:12px;line-height:1.5}
+.abi-help-act{display:block;padding:11px 13px;border-radius:10px;background:#F0F6FF;color:#0D2B4E;font-weight:700;font-size:13.5px;text-decoration:none;margin-bottom:8px}
+.abi-help-act.primary{background:#1252A3;color:#fff}
+.abi-help-act:last-child{margin-bottom:0}
+html[data-theme="heritage"] .abi-help-btn,html[data-theme="heritage"] .abi-help-act.primary{background:#b21f2d}
+html[data-theme="carbon"] .abi-help-btn,html[data-theme="carbon"] .abi-help-act.primary{background:#ff6a2c;color:#0d0e11}
+html[data-theme="royal"] .abi-help-btn,html[data-theme="royal"] .abi-help-act.primary{background:#6d3bd1}
+
+.abi-pop{position:fixed;inset:0;background:rgba(7,25,46,.62);backdrop-filter:blur(3px);z-index:10001;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
+.abi-pop.in{opacity:1}
+.abi-pop-card{background:#fff;border-radius:18px;max-width:430px;width:100%;padding:30px 24px;text-align:center;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.45);transform:translateY(16px) scale(.97);transition:transform .3s}
+.abi-pop.in .abi-pop-card{transform:none}
+.abi-pop-x{position:absolute;top:8px;right:14px;background:none;border:none;font-size:28px;color:#9aa6b4;cursor:pointer;line-height:1}
+.abi-pop-eyebrow{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#1252A3;margin-bottom:8px}
+.abi-pop-card h3{font-size:clamp(21px,5vw,26px);font-weight:900;color:#0D2B4E;margin-bottom:10px;line-height:1.15}
+.abi-pop-card p{font-size:14.5px;color:#5F5E5A;line-height:1.6;margin-bottom:18px}
+.abi-pop-card .cta{display:block}
+.abi-pop-call{display:block;margin-top:12px;font-size:13px;color:#9aa6b4;text-decoration:none;font-weight:700}
