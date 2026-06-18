@@ -643,3 +643,23 @@ html[data-theme="royal"] .abi-help-btn,html[data-theme="royal"] .abi-help-act.pr
 .abi-pop-card p{font-size:14.5px;color:#5F5E5A;line-height:1.6;margin-bottom:18px}
 .abi-pop-card .cta{display:block}
 .abi-pop-call{display:block;margin-top:12px;font-size:13px;color:#9aa6b4;text-decoration:none;font-weight:700}
+
+/* ============================================================
+   v16 — Mobile hardening: iOS safe-area insets + reduced-motion
+   ============================================================ */
+/* Keep the fixed bottom action bar + help bubble clear of the iOS home indicator.
+   env(safe-area-inset-*) resolves to 0 on non-notched devices, so no visual change there. */
+.sticky{box-sizing:content-box;padding-bottom:env(safe-area-inset-bottom)}
+body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+@media(max-width:375px){body{padding-bottom:calc(56px + env(safe-area-inset-bottom))}}
+.abi-help{bottom:calc(78px + env(safe-area-inset-bottom))}
+@media(min-width:1040px){.abi-help{bottom:calc(26px + env(safe-area-inset-bottom))}}
+
+/* Honor users who prefer reduced motion: stop continuous/decorative motion entirely */
+@media(prefers-reduced-motion:reduce){
+  .ann,.ticker,.abi-help-btn{animation:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .step,.plan,.earn,.info,.mod,.lkcard,.icard,.rcard,.get-item,.kbox,
+  .cta,.cta-wh,.plan-btn,.fsub,.cta-out,.abi-help-panel,.abi-pop,.abi-pop-card{transition:none!important}
+  html{scroll-behavior:auto!important}
+}
