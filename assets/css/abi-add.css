@@ -47,8 +47,25 @@ body.menu-open .navmenu-bd{opacity:1;visibility:visible}
    ============================================================ */
 .navmenu .ng{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7FA8D8;margin:14px 6px 2px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
 .navmenu .nm-home{font-weight:900;color:#fff}
-.theme-btn{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.10);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
-.theme-btn:hover{background:rgba(255,255,255,.20)}
+/* Animated ABI logo (Final-Logo.gif) in the header */
+.hdr-logo-img{height:44px;width:auto;display:block;flex-shrink:0}
+@media(max-width:560px){.hdr-logo-img{height:34px}}
+
+/* 5-dot color theme switcher (lives in the announcement bar, right side) */
+.ann-dots{display:flex;gap:7px;flex-shrink:0;align-items:center}
+.tdot{width:15px;height:15px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:#ccc;cursor:pointer;padding:0;-webkit-appearance:none;appearance:none;transition:transform .15s ease,box-shadow .2s ease,outline-color .15s ease}
+.tdot:hover{transform:scale(1.28)}
+.tdot:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.tdot[aria-pressed="true"]{outline:2px solid #fff;outline-offset:2px;transform:scale(1.18);box-shadow:0 0 8px 1px rgba(255,255,255,.55)}
+.tdot-classic{background:#3d8be0}
+.tdot-midnight{background:#0a1f3c}
+.tdot-heritage{background:#b21f2d}
+.tdot-royal{background:#6d3bd1}
+.tdot-carbon{background:#ff6a2c}
+@media(max-width:560px){.tdot{width:13px;height:13px}.ann-dots{gap:6px}}
+/* smooth color cross-fade while a new theme is applied */
+html.theming,html.theming body,html.theming .ann,html.theming .hdr,html.theming .sw,html.theming .sb,html.theming .step,html.theming .plan,html.theming .earn,html.theming .faq,html.theming .icard,html.theming .rcard,html.theming .get-item,html.theming .kbox,html.theming .info,html.theming .mod,html.theming .lkcard,html.theming .hero,html.theming .form-sec,html.theming .cd,html.theming .fcta,html.theming footer,html.theming .cta,html.theming .plan-btn,html.theming .ticker,html.theming .haircut-bar,html.theming .page-hero,html.theming .phones{transition:background-color .45s ease,color .45s ease,border-color .45s ease!important}
+@media(prefers-reduced-motion:reduce){html.theming *{transition:none!important}.tdot{transition:none}}
 
 /* ============================================================
    THREE THEMES  (classic = default reference look)
@@ -643,3 +660,52 @@ html[data-theme="royal"] .abi-help-btn,html[data-theme="royal"] .abi-help-act.pr
 .abi-pop-card p{font-size:14.5px;color:#5F5E5A;line-height:1.6;margin-bottom:18px}
 .abi-pop-card .cta{display:block}
 .abi-pop-call{display:block;margin-top:12px;font-size:13px;color:#9aa6b4;text-decoration:none;font-weight:700}
+
+/* ============================================================
+   v16 — Mobile hardening: iOS safe-area insets + reduced-motion
+   ============================================================ */
+/* Keep the fixed bottom action bar + help bubble clear of the iOS home indicator.
+   env(safe-area-inset-*) resolves to 0 on non-notched devices, so no visual change there. */
+.sticky{box-sizing:content-box;padding-bottom:env(safe-area-inset-bottom)}
+body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+@media(max-width:375px){body{padding-bottom:calc(56px + env(safe-area-inset-bottom))}}
+.abi-help{bottom:calc(78px + env(safe-area-inset-bottom))}
+@media(min-width:1040px){.abi-help{bottom:calc(26px + env(safe-area-inset-bottom))}}
+
+/* Honor users who prefer reduced motion: stop continuous/decorative motion entirely */
+@media(prefers-reduced-motion:reduce){
+  .ann,.ticker,.abi-help-btn{animation:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .step,.plan,.earn,.info,.mod,.lkcard,.icard,.rcard,.get-item,.kbox,
+  .cta,.cta-wh,.plan-btn,.fsub,.cta-out,.abi-help-panel,.abi-pop,.abi-pop-card{transition:none!important}
+  html{scroll-behavior:auto!important}
+}
+
+/* v17 — blog post article typography */
+.post{max-width:680px;margin:0 auto;line-height:1.7}
+.post p{margin:0 0 1.1em}
+.post h2,.post h3{margin:1.5em 0 .5em;line-height:1.25}
+.post ul,.post ol{margin:0 0 1.1em 1.2em}
+.post li{margin:.3em 0}
+.post-meta{opacity:.7;font-size:.92rem;margin-top:.4rem}
+.post-back{margin-top:1.4rem;font-weight:600}
+
+/* g3d — blue 3D gallery (institutional tilt) */
+.g3d-wrap{perspective:1400px}
+.g3d-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:14px}
+.g3d-card{border:0;padding:0;cursor:pointer;background:#0b1a33;border-radius:14px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 10px 30px rgba(7,20,46,.28);transform-style:preserve-3d;transition:transform .18s ease,box-shadow .25s ease}
+.g3d-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.g3d-card:hover{box-shadow:0 26px 60px rgba(7,20,46,.45)}
+.g3d-card:hover img{transform:scale(1.06)}
+.g3d-reels{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:14px}
+.g3d-reel{position:relative;border:0;cursor:pointer;background:linear-gradient(160deg,#0f2a52,#071a33);border-radius:14px;aspect-ratio:9/16;overflow:hidden;box-shadow:0 10px 30px rgba(7,20,46,.3);transition:transform .18s ease}
+.g3d-reel video{width:100%;height:100%;object-fit:cover;display:block}
+.g3d-reel:hover{transform:translateY(-4px) scale(1.02)}
+.g3d-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;background:radial-gradient(circle,rgba(0,0,0,.12),rgba(0,0,0,.5))}
+.g3d-lb{position:fixed;inset:0;z-index:300;background:rgba(5,12,26,.94);display:none;align-items:center;justify-content:center;padding:20px}
+.g3d-lb.on{display:flex}
+.g3d-lb img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.g3d-lb-x{position:absolute;top:14px;right:20px;font-size:32px;color:#fff;background:0;border:0;cursor:pointer;line-height:1}
+.g3d-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:44px;color:#fff;background:0;border:0;cursor:pointer;padding:8px 14px;line-height:1}
+.g3d-nav.prev{left:6px}.g3d-nav.next{right:6px}
+@media(prefers-reduced-motion:reduce){.g3d-card,.g3d-card img,.g3d-reel{transition:none}.g3d-card:hover img{transform:none}}
